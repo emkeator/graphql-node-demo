@@ -173,10 +173,8 @@ fragment courseFields on Course {
 Query 5: 
 
 
-mutation deleteCourse($id: Int!) {
-  deleteCourse(id: $id) {
-    ...courseFields
-  }
+mutation {
+    deleteCourse($id: Int!) 
 }
 
 fragment courseFields on Course {
