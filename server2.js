@@ -111,11 +111,10 @@ var updateCourseDesc = function({id, description}) {
 var deleteCourse = function({id}) {
     coursesData.map((course, i) => {
         if(course.id === id) {
-            coursesDate.splice(i, 1)
+            coursesData.splice(i, 1)
             return course;
         }
     })
-    return coursesData   
 }
 
 var createCourse = function({input}) {

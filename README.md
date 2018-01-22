@@ -45,7 +45,12 @@ To test the query in the graphql api server run:
 
 # Server2.js
 
-Query 1: 
+mutation {
+  mutationName(input: {MutationNameInput!}) {
+    MutationNamePayload
+}
+
+## Query 1: Get Course
 
 query getSingleCourse($courseID: Int!) {
     course(id: $courseID) {
@@ -69,7 +74,7 @@ Because the getSingleCourse query operation uses a dynamic parameter we need to 
 
 
 
-Query 2: 
+## Query 2: Get Multiple Courses
 
 query getCourseWithFragments($courseID1: Int!, $courseID2: Int!) {
       course1: course(id: $courseID1) {
@@ -101,7 +106,7 @@ Before executing the query operation we need to assign values to the parameters:
 
 
 
-Query 3: 
+## Query 3: Update Topic
 
 With GraphQL we’re also able to modify data. by using Mutations.
 
@@ -147,7 +152,7 @@ By executing this mutation we’re changing the value of the topic property for 
 ```
 
 
-Query 4: 
+## Query 4: Update Description
 
 mutation updateCourseDesc($id: Int!, $description: String!) {
   updateCourseDesc(id: $id, description: $description) {
@@ -170,27 +175,21 @@ fragment courseFields on Course {
 }
 
 
-Query 5: 
+## Query 5: Delete Course
 
+ mutation DeleteCourse($id: Int!) {
+      deleteCourse(id: $id) {
+        id
+      }
+  }
 
-mutation {
-    deleteCourse($id: Int!) 
-}
-
-fragment courseFields on Course {
-  title
-  author
-  description
-  topic
-  url
-}
 
 
 {
   "id": 1
 }
 
-Query 6: 
+## Query 6: Create Course
 
 mutation {
   createCourse(input: {
@@ -202,4 +201,34 @@ mutation {
   }) {
     id
   }
+}
+
+
+## Query 7: Get Courses
+
+query getCourses($topic: String) {
+    courses(topic: $topic) {
+        title
+        author
+        description
+        topic
+        url
+    }
+}
+
+
+## Query 8: Get Courses with topic query
+
+query getCourses($topic: String) {
+    courses(topic: $topic) {
+        title
+        author
+        description
+        topic
+        url
+    }
+}
+
+{
+  "topic": "JavaScript"
 }
